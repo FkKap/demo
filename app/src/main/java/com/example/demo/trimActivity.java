@@ -74,7 +74,8 @@ public class trimActivity extends AppCompatActivity {
         Log.e("trimmmmmmmmmmmmmmmmmmmmmmmmmmmmm",uri.toString());
         File file = new File(uri.getPath());
         Intent i = new Intent(this,ViewVideo.class);
-        i.putExtra("fffffffffffffffffffffffffffffffffffff",file.getPath());
+        i.putExtra("trimfile",file.getPath());
+        Log.e("ffffffffffffffffffffffffffffffff",file.getPath().toString());
         startActivity(i);
 
     }

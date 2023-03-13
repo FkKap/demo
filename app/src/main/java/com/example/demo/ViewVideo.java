@@ -25,25 +25,26 @@ public class ViewVideo extends AppCompatActivity {
         getSupportActionBar().hide();
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        Intent i = new Intent();
+        Intent i = getIntent();
         String filepath = i.getStringExtra("trimfile");
+        Log.e("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFf",filepath);
 
-        VideoView videoView =(VideoView)findViewById(R.id.video);
+        viewVideo =(VideoView)findViewById(R.id.video);
 
         //Creating MediaController
         MediaController mediaController= new MediaController(this);
-        mediaController.setAnchorView(videoView);
+        mediaController.setAnchorView(viewVideo);
 
-        Log.e("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFf",filepath);
+
         //specify the location of media file
 
         Uri uri= Uri.parse(filepath);
 
         //Setting MediaController and URI, then starting the videoView
-        videoView.setMediaController(mediaController);
-        videoView.setVideoPath(filepath);
-        videoView.requestFocus();
-        videoView.start();
+        viewVideo.setMediaController(mediaController);
+        viewVideo.setVideoPath(filepath);
+        viewVideo.requestFocus();
+        viewVideo.start();
 
 
     }
