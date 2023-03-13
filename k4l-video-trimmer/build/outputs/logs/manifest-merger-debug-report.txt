@@ -1,0 +1,39 @@
+-- Merging decision tree log ---
+manifest
+ADDED from D:\bitbucket\practice\k4l-video-trimmer\src\main\AndroidManifest.xml:1:1-14:12
+INJECTED from D:\bitbucket\practice\k4l-video-trimmer\src\main\AndroidManifest.xml:1:1-14:12
+INJECTED from D:\bitbucket\practice\k4l-video-trimmer\src\main\AndroidManifest.xml:1:1-14:12
+	package
+		ADDED from D:\bitbucket\practice\k4l-video-trimmer\src\main\AndroidManifest.xml:3:5-43
+		INJECTED from D:\bitbucket\practice\k4l-video-trimmer\src\main\AndroidManifest.xml
+		INJECTED from D:\bitbucket\practice\k4l-video-trimmer\src\main\AndroidManifest.xml
+	xmlns:tools
+		ADDED from D:\bitbucket\practice\k4l-video-trimmer\src\main\AndroidManifest.xml:2:5-51
+	xmlns:android
+		ADDED from D:\bitbucket\practice\k4l-video-trimmer\src\main\AndroidManifest.xml:1:11-69
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from D:\bitbucket\practice\k4l-video-trimmer\src\main\AndroidManifest.xml:5:5-81
+	android:name
+		ADDED from D:\bitbucket\practice\k4l-video-trimmer\src\main\AndroidManifest.xml:5:22-78
+application
+ADDED from D:\bitbucket\practice\k4l-video-trimmer\src\main\AndroidManifest.xml:7:5-12:19
+	android:requestLegacyExternalStorage
+		ADDED from D:\bitbucket\practice\k4l-video-trimmer\src\main\AndroidManifest.xml:9:9-52
+	tools:targetApi
+		ADDED from D:\bitbucket\practice\k4l-video-trimmer\src\main\AndroidManifest.xml:10:9-28
+	android:allowBackup
+		ADDED from D:\bitbucket\practice\k4l-video-trimmer\src\main\AndroidManifest.xml:8:9-35
+uses-sdk
+INJECTED from D:\bitbucket\practice\k4l-video-trimmer\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from D:\bitbucket\practice\k4l-video-trimmer\src\main\AndroidManifest.xml
+INJECTED from D:\bitbucket\practice\k4l-video-trimmer\src\main\AndroidManifest.xml
+INJECTED from D:\bitbucket\practice\k4l-video-trimmer\src\main\AndroidManifest.xml
+INJECTED from D:\bitbucket\practice\k4l-video-trimmer\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from D:\bitbucket\practice\k4l-video-trimmer\src\main\AndroidManifest.xml
+		ADDED from D:\bitbucket\practice\k4l-video-trimmer\src\main\AndroidManifest.xml
+		INJECTED from D:\bitbucket\practice\k4l-video-trimmer\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from D:\bitbucket\practice\k4l-video-trimmer\src\main\AndroidManifest.xml
+		ADDED from D:\bitbucket\practice\k4l-video-trimmer\src\main\AndroidManifest.xml
+		INJECTED from D:\bitbucket\practice\k4l-video-trimmer\src\main\AndroidManifest.xml
