@@ -45,7 +45,5 @@ public class ViewVideo extends AppCompatActivity {
         viewVideo.setVideoPath(filepath);
         viewVideo.requestFocus();
         viewVideo.start();
-
-
     }
 }
