@@ -4,19 +4,26 @@ import static android.net.Uri.parse;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.WindowManager;
 import android.widget.MediaController;
+import android.widget.TextView;
 import android.widget.VideoView;
 
 import java.io.File;
+import java.io.IOException;
 
 public class ViewVideo extends AppCompatActivity {
 
     VideoView viewVideo;
+    TextView time;
+    String filepath;
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,10 +33,11 @@ public class ViewVideo extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         Intent i = getIntent();
-        String filepath = i.getStringExtra("trimfile");
+         filepath = i.getStringExtra("trimfile");
         Log.e("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFf",filepath);
 
         viewVideo =(VideoView)findViewById(R.id.video);
+        time = (TextView)findViewById(R.id.time);
 
         //Creating MediaController
         MediaController mediaController= new MediaController(this);
@@ -45,5 +53,12 @@ public class ViewVideo extends AppCompatActivity {
         viewVideo.setVideoPath(filepath);
         viewVideo.requestFocus();
         viewVideo.start();
+
+
+
+
+
     }
+
+
 }
