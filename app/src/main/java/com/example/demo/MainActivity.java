@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_TAKE_GALLERY_VIDEO = 777;
     RecyclerView recyclerView;
     ArrayList<String> listofVideo = new ArrayList<>();
+    ArrayList<String> listofVideoDuration = new ArrayList<>();
+
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -47,10 +49,7 @@ public class MainActivity extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         recyclerView = (RecyclerView) findViewById(R.id.recycle);
 
-
         permission();
-
-
 
 
     }
@@ -62,13 +61,13 @@ public class MainActivity extends AppCompatActivity {
     {
         Uri uri1;
         Cursor cursor1;
-        int column_index_data1;
+        int column_index_data1,column_index_data2;
         ArrayList<String> listOfAllImages = new ArrayList<String>();
         String absolutePathOfImage = null;
         uri1 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
         Log.e("uri",uri1.toString());
 
-       String[] projection = {MediaStore.MediaColumns.DATA, MediaStore.Video.Media.BUCKET_DISPLAY_NAME,
+       String[] projection = {MediaStore.MediaColumns.DATA,MediaStore.MediaColumns.DURATION,MediaStore.Video.Media.BUCKET_DISPLAY_NAME,
                 MediaStore.Images.Media.BUCKET_DISPLAY_NAME};
 
 
@@ -79,6 +78,9 @@ public class MainActivity extends AppCompatActivity {
 
         Log.e("cursor1", cursor1.toString());
         column_index_data1 = cursor1.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
+        column_index_data2 = cursor1.getColumnIndexOrThrow(MediaStore.MediaColumns.DURATION);
+
+
 
 
 
@@ -86,11 +88,11 @@ public class MainActivity extends AppCompatActivity {
             absolutePathOfImage = cursor1.getString(column_index_data1);
 
 
-
             String[] words = absolutePathOfImage.split("\\.");
             if (!words[words.length - 1].equals("gif")) {
 
                 listOfAllImages.add(absolutePathOfImage);
+                listofVideoDuration.add(convertMillieToHMmSs(Long.parseLong(cursor1.getString(column_index_data2))));
             } else {
                 Log.e("remove", "done");
             }
@@ -104,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
 
         listofVideo = getAllVideoList(MainActivity.this);
         Log.e("helllllooo", String.valueOf(listofVideo.size()));
-        adapter Adapter = new adapter(this, listofVideo);
+        adapter Adapter = new adapter(this, listofVideo,listofVideoDuration);
         recyclerView.setHasFixedSize(true);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(gridLayoutManager);
@@ -161,6 +163,22 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    public String convertMillieToHMmSs(long millie)
+    {
+        long seconds = (millie / 1000);
+        long second = seconds % 60;
+        long minute = (seconds / 60) % 60;
+        long hour = (seconds / (60 * 60)) % 24;
+
+
+        if (hour > 0) {
+            return String.format("%02d:%02d:%02d", hour, minute, second);
+        } else {
+            return String.format("%02d:%02d", minute, second);
+        }
+
+    }
 
 
 }
