@@ -35,6 +35,7 @@ public class trimActivity extends AppCompatActivity {
 
            if (trimmer != null)
            {
+
                trimmer.setMaxDuration(30);
                trimmer.setDestinationPath(getCacheDir().getAbsolutePath() + "/trim/");
                trimmer.setVideoInformationVisibility(true);
