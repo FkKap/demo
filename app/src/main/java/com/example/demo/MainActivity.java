@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -46,16 +47,9 @@ public class MainActivity extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         recyclerView = (RecyclerView) findViewById(R.id.recycle);
 
-        //getAllFiles("video");
+
         permission();
 
-        listofVideo = getAllVideoList(MainActivity.this);
-        Log.e("helllllooo", String.valueOf(listofVideo.size()));
-        adapter Adapter = new adapter(this, listofVideo);
-        recyclerView.setHasFixedSize(true);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
-        recyclerView.setLayoutManager(gridLayoutManager);
-        recyclerView.setAdapter(Adapter);
 
 
 
@@ -105,9 +99,17 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void setAdapter()
+    {
 
-
-
+        listofVideo = getAllVideoList(MainActivity.this);
+        Log.e("helllllooo", String.valueOf(listofVideo.size()));
+        adapter Adapter = new adapter(this, listofVideo);
+        recyclerView.setHasFixedSize(true);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
+        recyclerView.setLayoutManager(gridLayoutManager);
+        recyclerView.setAdapter(Adapter);
+    }
 
     public void permission()
     {
@@ -116,19 +118,24 @@ public class MainActivity extends AppCompatActivity {
                     android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
                     != PackageManager.PERMISSION_GRANTED)
             {
+                Log.e("permission","11111");
 
                 if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this,
                         android.Manifest.permission.WRITE_EXTERNAL_STORAGE))
                 {
+                    Log.e("permission","222222");
+                } else
+                {
 
-                } else {
-
-
+                    Log.e("permission","333333");
                     ActivityCompat.requestPermissions(MainActivity.this,
                             new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                            777);
+                            REQUEST_TAKE_GALLERY_VIDEO);
 
                 }
+            }else
+            {
+                setAdapter();
             }
         } catch (Exception e)
         {
@@ -137,20 +144,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 777 && resultCode == RESULT_OK)
-        {
-            listofVideo = getAllVideoList(MainActivity.this);
-            Log.e("helllllooo", String.valueOf(listofVideo.size()));
-            adapter Adapter = new adapter(this, listofVideo);
-            recyclerView.setHasFixedSize(true);
-            GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
-            recyclerView.setLayoutManager(gridLayoutManager);
-            recyclerView.setAdapter(Adapter);
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
+        if(requestCode == REQUEST_TAKE_GALLERY_VIDEO)
+        {
+            if(grantResults.length>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+            {
+                Log.e("permission","44444");
+                setAdapter();
+            }else
+            {
+                Log.e("permission","55555");
+                Toast.makeText(this, "Permission Not Granted For Gallery", Toast.LENGTH_LONG).show();
+            }
         }
     }
+
 
 
 }
